@@ -1,0 +1,11 @@
+export const TODO_LIST_GET = 'TODO_LIST_GET';
+export const TODO_LIST_SAVE = 'TODO_LIST_SAVE';
+export const TODO_ADD = 'TODO_ADD';
+export const TODO_REMOVE = 'TODO_REMOVE';
+
+export const TODO_GROUP_LIST_GET = 'TODO_GROUP_LIST_GET';
+export const TODO_GROUP_LIST_SAVE = 'TODO_GROUP_LIST_SAVE';
+export const TODO_GROUP_ADD = 'TODO_GROUP_ADD';
+export const TODO_GROUP_REMOVE = 'TODO_GROUP_REMOVE';
+
+
