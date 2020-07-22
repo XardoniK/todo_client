@@ -1,10 +1,7 @@
 import React, {useEffect} from 'react';
-import TodoAddField from "./components/TodoAddField";
-import TodoList from "./components/TodoList";
 import {connect} from "react-redux";
 import {todoGroupListGet, todoListGet} from "./redux/actions/todo";
-import TodoGroupList from "./components/TodoGroupList";
-import TodoGroupAddField from "./components/TodoGroupAddField";
+import TodoAppHome from "./components/TodoAppHome";
 
 const TodoApp = (props) => {
 	const {todoListGet, todoGroupListGet} = props;
@@ -17,10 +14,7 @@ const TodoApp = (props) => {
 
 	return (
 		<>
-			<TodoGroupAddField/>
-			<TodoAddField/>
-			<TodoGroupList/>
-			<TodoList/>
+			<TodoAppHome/>
 		</>
 	);
 };

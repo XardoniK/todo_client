@@ -11,9 +11,9 @@ export const todoListSave = (state, action) => {
 }
 
 export const todoAdd = (state, action) => {
-	const {id, name} = action;
+	const {id, name, todoGroupID} = action;
 
-	const updated_todo_list = R.append({id, name}, state.todo_list);
+	const updated_todo_list = R.append({id, name, todoGroupID}, state.todo_list);
 
 	return {
 		...state,
@@ -47,5 +47,12 @@ export const todoGroupAdd = (state, action) => {
 	return {
 		...state,
 		todo_group_list: updated_todo_group_list,
+	}
+}
+
+export const todoGroupSelect = (state, action) => {
+	return {
+		...state,
+		todo_group_selected: action.id,
 	}
 }

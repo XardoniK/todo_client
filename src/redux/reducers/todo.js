@@ -1,9 +1,17 @@
-import {TODO_ADD, TODO_GROUP_ADD, TODO_GROUP_LIST_SAVE, TODO_LIST_SAVE, TODO_REMOVE} from "../action_types";
-import {todoAdd, todoGroupAdd, todoGroupListSave, todoListSave, todoRemove} from "../modifiers/todo";
+import {
+	TODO_ADD,
+	TODO_GROUP_ADD,
+	TODO_GROUP_LIST_SAVE,
+	TODO_GROUP_SELECT,
+	TODO_LIST_SAVE,
+	TODO_REMOVE
+} from "../action_types";
+import {todoAdd, todoGroupAdd, todoGroupListSave, todoGroupSelect, todoListSave, todoRemove} from "../modifiers/todo";
 
 const initial_state = {
 	todo_list: [],
 	todo_group_list: [],
+	todo_group_selected: null,
 };
 
 const reducer = (state = initial_state, action) => {
@@ -24,6 +32,9 @@ const reducer = (state = initial_state, action) => {
 		}
 		case TODO_GROUP_ADD: {
 			return todoGroupAdd(state, action);
+		}
+		case TODO_GROUP_SELECT: {
+			return todoGroupSelect(state, action);
 		}
 		default: {
 			return state;

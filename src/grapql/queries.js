@@ -1,6 +1,6 @@
 export const todoAddQuery = `
-	mutation todoAdd($name: String!) {
-		todoAdd(name: $name) {
+	mutation todoAdd($name: String!, $todoGroupID: ID!) {
+		todoAdd(name: $name, todoGroupID: $todoGroupID) {
 			id
 		}
 	}
@@ -19,6 +19,7 @@ export const todoListGetQuery = `
 		todoList {
 			id
 			name
+			todoGroupID
 		}
 	}
 `;
@@ -28,6 +29,10 @@ export const todoGroupListGetQuery = `
 		todoGroupList {
 			id
 			name
+			todos {
+				id
+				name
+			}
 		}
 	}
 `;

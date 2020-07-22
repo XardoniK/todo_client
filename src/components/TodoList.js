@@ -4,6 +4,7 @@ import {connect} from "react-redux";
 import {todoAdd, todoRemove} from "../redux/actions/todo";
 import TodoItem from "./TodoItem";
 import {useMutation, useQuery} from "graphql-hooks";
+import {filter} from "ramda";
 
 const query = `
 	query {
@@ -66,10 +67,12 @@ TodoList.propTypes = propTypes;
 TodoList.defaultProps = defaultProps;
 
 const mapStateToProps = state => {
-	const {todo_list} = state.todo;
+	const {todo_list, todo_group_selected} = state.todo;
+
+	const todo_list_filtered = filter(todo_item => todo_item.todoGroupID === todo_group_selected, todo_list);
 
 	return {
-		todo_list
+		todo_list: todo_list_filtered
 	}
 };
 
