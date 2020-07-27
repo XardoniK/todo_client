@@ -1,34 +1,55 @@
 import {
-	TODO_ADD,
+	TODO_ITEM_ADD,
 	TODO_GROUP_ADD,
-	TODO_GROUP_LIST_SAVE,
 	TODO_GROUP_SELECT,
-	TODO_LIST_SAVE,
-	TODO_REMOVE
+	TODO_ITEM_REMOVE, TODO_ITEM_SET_CHECKED, TODO_GROUPS_SAVE, TODO_LISTS_SAVE
 } from "../action_types";
-import {todoAdd, todoGroupAdd, todoGroupListSave, todoGroupSelect, todoListSave, todoRemove} from "../modifiers/todo";
+import {
+	todoItemAdd,
+	todoItemRemove,
+	todoItemSetChecked
+} from "../modifiers/todo_item";
+import {
+	todoListsSave,
+} from '../modifiers/todo_list';
+
+import {
+	todoGroupAdd,
+	todoGroupsSave,
+	todoGroupSelect,
+} from "../modifiers/todo_group";
+import {TODO_GROUPS, TODO_GROUPS_SELECTED, TODO_ITEMS, TODO_LISTS, TODO_LISTS_SELECTED} from "../../constants";
 
 const initial_state = {
-	todo_list: [],
-	todo_group_list: [],
-	todo_group_selected: null,
+	[TODO_ITEMS]: [],
+
+	[TODO_LISTS]: [],
+	[TODO_LISTS_SELECTED]: null,
+
+	[TODO_GROUPS]: [],
+	[TODO_GROUPS_SELECTED]: null,
 };
 
 const reducer = (state = initial_state, action) => {
 	const {type} = action;
 
 	switch (type) {
-		case TODO_LIST_SAVE: {
-			return todoListSave(state, action);
+		case TODO_ITEM_ADD: {
+			return todoItemAdd(state, action);
 		}
-		case TODO_ADD: {
-			return todoAdd(state, action);
+		case TODO_ITEM_REMOVE: {
+			return todoItemRemove(state, action);
 		}
-		case TODO_REMOVE: {
-			return todoRemove(state, action);
+		case TODO_ITEM_SET_CHECKED: {
+			return todoItemSetChecked(state, action);
 		}
-		case TODO_GROUP_LIST_SAVE: {
-			return todoGroupListSave(state, action);
+
+		case TODO_LISTS_SAVE: {
+			return todoListsSave(state, action);
+		}
+
+		case TODO_GROUPS_SAVE: {
+			return todoGroupsSave(state, action);
 		}
 		case TODO_GROUP_ADD: {
 			return todoGroupAdd(state, action);

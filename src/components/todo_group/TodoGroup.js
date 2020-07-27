@@ -1,7 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import {todoGroupSelect} from "../redux/actions/todo";
+import {todoGroupSelect} from "../../redux/actions/todo";
+import {Link} from "react-router-dom";
 
 const propTypes = {
 	name: PropTypes.string,
@@ -10,7 +11,7 @@ const propTypes = {
 
 const defaultProps = {};
 
-const TodoGroupItem = (props) => {
+const TodoGroup = (props) => {
 	const {name, id, todoGroupSelect} = props;
 
 	const onClick = () => {
@@ -27,7 +28,13 @@ const TodoGroupItem = (props) => {
 					{id}
 				</div>
 				<div className="col-auto">
-					<div className="btn btn-primary" onClick={onClick}>Wybierz grupę</div>
+					<Link
+						to={`/todo_group/${id}`}
+						// onClick={onClick}
+						className="btn btn-primary"
+					>
+						Wybierz grupę
+					</Link>
 				</div>
 				<div className="col-auto">
 					<div className="btn btn-danger">Usuń grupę</div>
@@ -37,8 +44,8 @@ const TodoGroupItem = (props) => {
 	);
 };
 
-TodoGroupItem.propTypes = propTypes;
-TodoGroupItem.defaultProps = defaultProps;
+TodoGroup.propTypes = propTypes;
+TodoGroup.defaultProps = defaultProps;
 
 const mapStateToProps = state => {
 };
@@ -47,5 +54,5 @@ const actionCreators = {
 	todoGroupSelect,
 };
 
-export default connect(mapStateToProps, actionCreators)(TodoGroupItem);
-// export default TodoGroupItem;
+export default connect(mapStateToProps, actionCreators)(TodoGroup);
+// export default TodoGroup;

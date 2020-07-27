@@ -1,51 +1,22 @@
 import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from "react-redux";
-import {todoAdd, todoRemove} from "../redux/actions/todo";
+import {todoRemove} from "../../redux/actions/todo";
 import TodoItem from "./TodoItem";
-import {useMutation, useQuery} from "graphql-hooks";
 import {filter} from "ramda";
-
-const query = `
-	query {
-		todoList {
-			id
-			name
-		}
-	}
-`;
-
-const queryRemove = `
-	mutation removeTodo($id: ID) {
-		removeTodo(id: $id) {
-			id
-		}
-	}
-`;
 
 const propTypes = {};
 
 const defaultProps = {};
 
-const TodoList = (props) => {
+const TodoItems = (props) => {
 	const {todo_list, todoRemove} = props;
-
-	// const {loading, error, data, refetch} = useQuery(query);
-	// const [removeTodo] = useMutation(queryRemove);
-
-	// useEffect(() => {
-	// 	console.log(1);
-	// });
-
-	// if (!R.is(Object, todo_list)) return null;
-	// console.log(todo_list);
 
 	if (!todo_list) return null;
 
 	const onTodoRemove = async (id) => {
-		console.log(id);
+
 		todoRemove(id);
-		// const reponse = await removeTodo({variables: {id}});
 	};
 
 	return (
@@ -53,7 +24,9 @@ const TodoList = (props) => {
 			<div className="container">
 				{todo_list.map(todo_item => (
 					<TodoItem
+						id={todo_item.id}
 						name={todo_item.name}
+						checked={todo_item.checked}
 						onRemove={() => onTodoRemove(todo_item.id)}
 					/>
 				))}
@@ -63,8 +36,8 @@ const TodoList = (props) => {
 	);
 };
 
-TodoList.propTypes = propTypes;
-TodoList.defaultProps = defaultProps;
+TodoItems.propTypes = propTypes;
+TodoItems.defaultProps = defaultProps;
 
 const mapStateToProps = state => {
 	const {todo_list, todo_group_selected} = state.todo;
@@ -80,4 +53,4 @@ const actionCreators = {
 	todoRemove,
 };
 
-export default connect(mapStateToProps, actionCreators)(TodoList);
+export default connect(mapStateToProps, actionCreators)(TodoItems);

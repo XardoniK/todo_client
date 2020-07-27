@@ -1,9 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {todoRemove} from "../redux/actions/todo";
+import {todoRemove, todoSetChecked} from "../../redux/actions/todo";
 import {connect} from "react-redux";
 
 const propTypes = {
+	id: PropTypes.string,
+	checked: PropTypes.bool,
 	name: PropTypes.string,
 	onRemove: PropTypes.func,
 };
@@ -11,14 +13,23 @@ const propTypes = {
 const defaultProps = {};
 
 const TodoItem = (props) => {
-	const {name, onRemove} = props;
+	const {id, checked, name, onRemove, todoSetChecked} = props;
+
+	const onClick = () => {
+		todoSetChecked(id);
+	};
 
 	return (
 		<>
 
 			<div className="row my-3">
 				<div className="col">
-					<span>{name}</span>
+					<label className="form-check" onClick={onClick}>
+						<input className="form-check-input" type="checkbox" checked={checked}/>
+						<span className="form-check-label">
+							{name}
+						</span>
+					</label>
 				</div>
 				<div className="col-auto">
 
@@ -52,6 +63,7 @@ const mapStateToProps = (state, props) => {
 
 const actionCreators = {
 	todoRemove,
+	todoSetChecked,
 };
 
 export default connect(mapStateToProps, actionCreators)(TodoItem);

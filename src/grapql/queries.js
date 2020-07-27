@@ -1,35 +1,50 @@
-export const todoAddQuery = `
-	mutation todoAdd($name: String!, $todoGroupID: ID!) {
+export const todoItemsGetQuery = ``;
+
+export const todoItemAddQuery = `
+	mutation todoItemAdd($name: String!, $todoGroupID: ID!) {
 		todoAdd(name: $name, todoGroupID: $todoGroupID) {
 			id
 		}
 	}
 `;
 
-export const todoRemoveQuery = `
-	mutation todoRemove($id: ID) {
+export const todoItemRemoveQuery = `
+	mutation todoItemRemove($id: ID) {
 		todoRemove(id: $id) {
 			id
 		}
 	}             
 `;
 
-export const todoListGetQuery = `
-	query {
-		todoList {
+export const todoItemSetCheckedQuery = `
+	mutation todoItemSetChecked($id: ID!) {
+		todoSetChecked(id: $id) {
 			id
-			name
-			todoGroupID
 		}
 	}
 `;
 
-export const todoGroupListGetQuery = `
+export const todoListsGetQuery = `
 	query {
-		todoGroupList {
+		todoLists {
 			id
 			name
-			todos {
+			todoGroupID
+			todoItems {
+				id
+				name
+				checked
+			}
+		}
+	}
+`
+
+export const todoGroupsGetQuery = `
+	query {
+		todoGroups {
+			id
+			name
+			todoLists {
 				id
 				name
 			}
@@ -40,6 +55,14 @@ export const todoGroupListGetQuery = `
 export const todoGroupAddQuery = `
 	mutation todoGroupAdd($name: String!) {
 		todoGroupAdd(name: $name) {
+			id
+		}
+	}
+`;
+
+export const clearDBQuery = `
+	mutation clearDB {
+		clearDB {
 			id
 		}
 	}

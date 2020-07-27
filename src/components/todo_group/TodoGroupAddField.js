@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import {todoAdd} from "../redux/actions/todo";
-import {todoGroupAdd} from "../redux/actions/todo";
+import {todoAdd} from "../../redux/actions/todo";
+import {todoGroupAdd} from "../../redux/actions/todo";
 
 const propTypes = {};
 
@@ -43,9 +43,13 @@ const TodoAddField = (props) => {
 									placeholder="Add new group"
 									value={new_todo_group_name}
 									onChange={onChange}
+									data-testid="todo-group-add-input"
 								/>
 								<div className="input-group-append">
-									<button className="btn btn-secondary">
+									<button
+										className="btn btn-secondary"
+										data-testid="todo-group-add-button"
+									>
 										Dodaj
 									</button>
 								</div>

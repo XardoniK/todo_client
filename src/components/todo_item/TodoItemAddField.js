@@ -3,13 +3,13 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 // import {todoAdd} from "../redux/actions/todo_list";
 import {useMutation} from "graphql-hooks";
-import {todoAdd} from "../redux/actions/todo";
+import {todoAdd} from "../../redux/actions/todo";
 
 const propTypes = {};
 
 const defaultProps = {};
 
-const TodoAddField = (props) => {
+const TodoItemAddField = (props) => {
 	const {todoAdd} = props;
 	const [new_todo_name, setNewTodoName] = useState('');
 	// const [todoAdd] = useMutation(`
@@ -65,8 +65,8 @@ const TodoAddField = (props) => {
 	);
 };
 
-TodoAddField.propTypes = propTypes;
-TodoAddField.defaultProps = defaultProps;
+TodoItemAddField.propTypes = propTypes;
+TodoItemAddField.defaultProps = defaultProps;
 
 const mapStateToProps = state => ({});
 
@@ -74,5 +74,5 @@ const actionCreators = {
 	todoAdd,
 };
 
-export default connect(mapStateToProps, actionCreators)(TodoAddField);
-// export default TodoAddField;
+export default connect(mapStateToProps, actionCreators)(TodoItemAddField);
+// export default TodoItemAddField;

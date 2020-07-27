@@ -18,14 +18,3 @@ export const graphQLRequest = async (query, variables) => {
 		return null;
 	}
 };
-
-export const graphQLMutation = async (query, variables) => {
-	try {
-		const response = await axios.post(GRAPHQL_API_URL, {
-			query,
-			variables,
-		});
-	} catch (e) {
-		console.log(e);
-	}
-};
