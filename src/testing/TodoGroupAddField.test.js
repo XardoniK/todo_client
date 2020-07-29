@@ -1,6 +1,6 @@
 import React from "react";
 import {render, fireEvent} from "./test-utils";
-import TodoGroupAddField from "../components/todo_group/TodoGroupAddField";
+import TodoGroupAddField from "../components/todo_group/TodoGroupAdd";
 
 it('renders correctly', () => {
 	const {queryByTestId, queryByPlaceholderName} = render(<TodoGroupAddField/>)

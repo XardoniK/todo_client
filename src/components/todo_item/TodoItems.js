@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from "react-redux";
-import {todoRemove} from "../../redux/actions/todo";
+import {todoItemRemove,} from "../../redux/actions/todo_item";
 import TodoItem from "./TodoItem";
 import {filter} from "ramda";
 
@@ -10,9 +10,9 @@ const propTypes = {};
 const defaultProps = {};
 
 const TodoItems = (props) => {
-	const {todo_list, todoRemove} = props;
+	const {todo_items, todoRemove} = props;
 
-	if (!todo_list) return null;
+	if (!todo_items) return null;
 
 	const onTodoRemove = async (id) => {
 
@@ -22,7 +22,7 @@ const TodoItems = (props) => {
 	return (
 		<>
 			<div className="container">
-				{todo_list.map(todo_item => (
+				{todo_items.map(todo_item => (
 					<TodoItem
 						id={todo_item.id}
 						name={todo_item.name}
@@ -40,17 +40,17 @@ TodoItems.propTypes = propTypes;
 TodoItems.defaultProps = defaultProps;
 
 const mapStateToProps = state => {
-	const {todo_list, todo_group_selected} = state.todo;
+	const {todo_items, todo_group_selected} = state.todo;
 
-	const todo_list_filtered = filter(todo_item => todo_item.todoGroupID === todo_group_selected, todo_list);
+	const todo_items_filtered = filter(todo_item => todo_item.todoGroupID === todo_group_selected, todo_items);
 
 	return {
-		todo_list: todo_list_filtered
+		todo_items: todo_items_filtered
 	}
 };
 
 const actionCreators = {
-	todoRemove,
+	todoRemove: todoItemRemove,
 };
 
 export default connect(mapStateToProps, actionCreators)(TodoItems);

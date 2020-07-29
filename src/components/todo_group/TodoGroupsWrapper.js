@@ -1,7 +1,7 @@
 import React from 'react';
 //import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import TodoGroupAddField from "./TodoGroupAddField";
+import TodoGroupAddField from "./TodoGroupAdd";
 import TodoGroups from "./TodoGroups";
 
 const propTypes = {};

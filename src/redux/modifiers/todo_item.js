@@ -1,6 +1,13 @@
 import * as R from "ramda";
 import {TODO_ITEMS} from "../../constants";
 
+export const todoItemsSave = (state, action) => {
+	return {
+		...state,
+		[TODO_ITEMS]: action[TODO_ITEMS],
+	};
+}
+
 export const todoItemAdd = (state, action) => {
 	const {id, name, todoGroupID} = action;
 
@@ -8,7 +15,7 @@ export const todoItemAdd = (state, action) => {
 
 	return {
 		...state,
-		[TODO_ITEMS]: updated_todo_items
+		[TODO_ITEMS]: updated_todo_items,
 	};
 };
 
@@ -17,7 +24,7 @@ export const todoItemRemove = (state, action) => {
 
 	return {
 		...state,
-		[TODO_ITEMS]: updated_todo_items
+		[TODO_ITEMS]: updated_todo_items,
 	};
 };
 
@@ -32,5 +39,5 @@ export const todoItemSetChecked = (state, action) => {
 	return {
 		...state,
 		[TODO_ITEMS]: updated_todo_items,
-	}
+	};
 };

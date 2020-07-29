@@ -1,8 +1,9 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import {todoGroupSelect} from "../../redux/actions/todo";
+import {todoGroupSelect} from "../../redux/actions/todo_group";
 import {Link} from "react-router-dom";
+import {ROUTER_TODO_GROUP} from "../../constants";
 
 const propTypes = {
 	name: PropTypes.string,
@@ -29,7 +30,7 @@ const TodoGroup = (props) => {
 				</div>
 				<div className="col-auto">
 					<Link
-						to={`/todo_group/${id}`}
+						to={`/${ROUTER_TODO_GROUP}/${id}`}
 						// onClick={onClick}
 						className="btn btn-primary"
 					>
@@ -47,8 +48,7 @@ const TodoGroup = (props) => {
 TodoGroup.propTypes = propTypes;
 TodoGroup.defaultProps = defaultProps;
 
-const mapStateToProps = state => {
-};
+const mapStateToProps = state => ({});
 
 const actionCreators = {
 	todoGroupSelect,

@@ -1,28 +1,28 @@
 import React, {useEffect} from 'react';
 import {connect} from "react-redux";
-import {clearDB, todoGroupsGet} from "./redux/actions/todo";
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import TodoGroupsWrapper from "./components/todo_group/TodoGroupsWrapper";
 import TodoListWrapper from "./components/todo_list/TodoListsWrapper";
 import TodoItemsWrapper from "./components/todo_item/TodoItemsWrapper";
 import Button from "reactstrap/lib/Button";
+import {todoDataGet} from "./redux/actions/todo_data";
+import {ROUTER_TODO_GROUP, ROUTER_TODO_LIST} from "./constants";
 
 const TodoApp = (props) => {
-	const {todoGroupsGet, clearDB} = props;
+	const {todoDataGet} = props;
 
 	useEffect(() => {
-		todoGroupsGet();
+		todoDataGet();
 	}, []);
 
 	return (
 		<>
-			{/*<Button color="primary" onClick={clearDB}>Clear DB</Button>*/}
 			<Router>
 				<Switch>
-					<Route path="/todo-list/:todo_list_id">
+					<Route path={`/${ROUTER_TODO_LIST}/:todo_list_id`}>
 						<TodoItemsWrapper/>
 					</Route>
-					<Route path="/todo-group/:todo_group_id">
+					<Route path={`/${ROUTER_TODO_GROUP}/:todo_group_id`}>
 						<TodoListWrapper/>
 					</Route>
 					<Route>
@@ -38,8 +38,7 @@ const mapStateToProps = state => {
 	return state;
 }
 const actionTypes = {
-	todoGroupsGet,
-	clearDB,
+	todoDataGet,
 }
 
 export default connect(mapStateToProps, actionTypes)(TodoApp);

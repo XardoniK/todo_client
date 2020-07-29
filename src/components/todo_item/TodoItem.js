@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {todoRemove, todoSetChecked} from "../../redux/actions/todo";
+import {todoItemRemove, todoItemSetChecked} from "../../redux/actions/todo_item";
 import {connect} from "react-redux";
 
 const propTypes = {
@@ -62,8 +62,8 @@ const mapStateToProps = (state, props) => {
 };
 
 const actionCreators = {
-	todoRemove,
-	todoSetChecked,
+	todoRemove: todoItemRemove,
+	todoSetChecked: todoItemSetChecked,
 };
 
 export default connect(mapStateToProps, actionCreators)(TodoItem);

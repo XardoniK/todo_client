@@ -1,5 +1,5 @@
 import * as R from "ramda";
-import {TODO_GROUPS, TODO_GROUPS_SELECTED} from "../../constants";
+import {TODO_GROUPS, TODO_GROUP_SELECTED} from "../../constants";
 
 export const todoGroupsSave = (state, action) => {
 
@@ -23,6 +23,6 @@ export const todoGroupAdd = (state, action) => {
 export const todoGroupSelect = (state, action) => {
 	return {
 		...state,
-		[TODO_GROUPS_SELECTED]: action.id,
+		[TODO_GROUP_SELECTED]: action.id,
 	}
 }

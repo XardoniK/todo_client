@@ -1,10 +1,10 @@
 import React, {useEffect} from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import TodoAddField from "../todo_item/TodoItemAddField";
-import TodoList from "../todo_item/TodoItems";
 import {useParams} from 'react-router-dom';
-import {todoGroupSelect} from "../../redux/actions/todo";
+import {todoGroupSelect} from "../../redux/actions/todo_group";
+import TodoLists from "./TodoLists";
+import TodoListAdd from "./TodoListAdd";
 
 const propTypes = {};
 
@@ -21,8 +21,8 @@ const TodoListsWrapper = (props) => {
 
 	return (
 		<>
-			<TodoAddField/>
-			<TodoList/>
+			<TodoListAdd/>
+			<TodoLists/>
 		</>
 	);
 };
@@ -30,8 +30,8 @@ const TodoListsWrapper = (props) => {
 TodoListsWrapper.propTypes = propTypes;
 TodoListsWrapper.defaultProps = defaultProps;
 
-const mapStateToProps = state => {
-};
+const mapStateToProps = state => ({
+});
 
 const actionCreators = {
 	todoGroupSelect,

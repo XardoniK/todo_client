@@ -1,7 +1,7 @@
 import React from 'react';
 //import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import TodoAddField from "./TodoItemAddField";
+import TodoAddField from "./TodoItemAdd";
 import TodoList from "./TodoItems";
 
 const propTypes = {};

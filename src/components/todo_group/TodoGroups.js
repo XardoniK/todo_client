@@ -15,6 +15,7 @@ const TodoGroups = (props) => {
 			<div className="container">
 				{todo_groups.map((todo_group) => (
 					<TodoGroup
+						key={todo_group.id}
 						name={todo_group.name}
 						id={todo_group.id}
 					/>

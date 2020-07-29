@@ -1,16 +1,41 @@
-export const todoItemsGetQuery = ``;
+export const todoDataGetQuery = `
+	query {
+		todoLists {
+			id
+			name
+			todoGroupID
+			todoItems {
+				id
+			}
+		}
+		todoItems {
+			id
+			name
+			checked
+			todoListID
+		}
+		todoGroups {
+			id
+			name
+			todoLists {
+				id
+			}
+		}
+	}
+`;
 
 export const todoItemAddQuery = `
-	mutation todoItemAdd($name: String!, $todoGroupID: ID!) {
-		todoAdd(name: $name, todoGroupID: $todoGroupID) {
+	mutation todoItemAdd($name: String!, $todoListID: ID!) {
+		todoItemAdd(name: $name, todoListID: $todoListID) {
 			id
+			todoListID
 		}
 	}
 `;
 
 export const todoItemRemoveQuery = `
 	mutation todoItemRemove($id: ID) {
-		todoRemove(id: $id) {
+		todoItemRemove(id: $id) {
 			id
 		}
 	}             
@@ -24,30 +49,19 @@ export const todoItemSetCheckedQuery = `
 	}
 `;
 
-export const todoListsGetQuery = `
-	query {
-		todoLists {
+export const todoListAddQuery = `
+	mutation todoListAdd($name: String!, $todoGroupID: ID) {
+		todoListAdd(name: $name, todoGroupID: $todoGroupID) {
 			id
-			name
 			todoGroupID
-			todoItems {
-				id
-				name
-				checked
-			}
 		}
 	}
-`
+`;
 
-export const todoGroupsGetQuery = `
-	query {
-		todoGroups {
+export const todoListRemoveQuery = `
+	mutation todoListRemove($id: ID!) {
+		todoListRemove(id: $id) {
 			id
-			name
-			todoLists {
-				id
-				name
-			}
 		}
 	}
 `;
@@ -60,9 +74,9 @@ export const todoGroupAddQuery = `
 	}
 `;
 
-export const clearDBQuery = `
-	mutation clearDB {
-		clearDB {
+export const todoGroupRemoveQuery = `
+	mutation todoGroupRemove($id: ID!) {
+		todoGroupRemove(id: $id) {
 			id
 		}
 	}
