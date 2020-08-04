@@ -10,13 +10,12 @@ const propTypes = {};
 const defaultProps = {};
 
 const TodoItems = (props) => {
-	const {todo_items, todoRemove} = props;
+	const {todo_items, todoItemRemove} = props;
 
 	if (!todo_items) return null;
 
-	const onTodoRemove = async (id) => {
-
-		todoRemove(id);
+	const onTodoItemRemove = (id) => {
+		todoItemRemove(id);
 	};
 
 	return (
@@ -24,10 +23,11 @@ const TodoItems = (props) => {
 			<div className="container">
 				{todo_items.map(todo_item => (
 					<TodoItem
+						key={todo_item.id}
 						id={todo_item.id}
 						name={todo_item.name}
 						checked={todo_item.checked}
-						onRemove={() => onTodoRemove(todo_item.id)}
+						onRemove={() => onTodoItemRemove(todo_item.id)}
 					/>
 				))}
 			</div>
@@ -40,9 +40,9 @@ TodoItems.propTypes = propTypes;
 TodoItems.defaultProps = defaultProps;
 
 const mapStateToProps = state => {
-	const {todo_items, todo_group_selected} = state.todo;
+	const {todo_items, todo_list_selected} = state.todo;
 
-	const todo_items_filtered = filter(todo_item => todo_item.todoGroupID === todo_group_selected, todo_items);
+	const todo_items_filtered = filter(todo_item => todo_item.todoListID === todo_list_selected, todo_items);
 
 	return {
 		todo_items: todo_items_filtered
@@ -50,7 +50,7 @@ const mapStateToProps = state => {
 };
 
 const actionCreators = {
-	todoRemove: todoItemRemove,
+	todoItemRemove,
 };
 
 export default connect(mapStateToProps, actionCreators)(TodoItems);
