@@ -1,5 +1,5 @@
 import * as R from "ramda";
-import {TODO_LISTS} from "../../constants";
+import {TODO_LIST_SELECTED, TODO_LISTS} from "../../constants";
 
 export const todoListsSave = (state, action) => {
 
@@ -18,4 +18,13 @@ export const todoListAdd = (state, action) => {
 		...state,
 		[TODO_LISTS]: updated_todo_lists,
 	};
+}
+
+export const todoListSelect = (state, action) => {
+	const {id} = action;
+
+	return {
+		...state,
+		[TODO_LIST_SELECTED]: id,
+	}
 }
