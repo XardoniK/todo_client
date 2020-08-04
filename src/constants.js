@@ -16,3 +16,6 @@ export const ROUTER_TODO_GROUP = 'todo-group';
 export const GRAPHQL_TODO_ITEMS = 'todoItems';
 export const GRAPHQL_TODO_LISTS = 'todoLists';
 export const GRAPHQL_TODO_GROUPS = 'todoGroups';
+
+export const GRAPHQL_TODO_LIST_ID ='todoListID';
+export const GRAPHQL_TODO_GROUP_ID ='todoGroupID';
