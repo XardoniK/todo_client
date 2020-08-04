@@ -42,7 +42,7 @@ const ItemAdd = (props) => {
 								/>
 								<div className="input-group-append">
 									<button className="btn btn-secondary">
-										Dodaj
+										Add
 									</button>
 								</div>
 							</div>
