@@ -10,7 +10,12 @@ import {
 	todoItemRemoveQuery,
 	todoItemSetCheckedQuery
 } from "../../grapql/queries";
-import {GRAPHQL_TODO_ITEMS, TODO_ITEMS,} from "../../constants";
+import {
+	GRAPHQL_TODO_ITEMS,
+	GRAPHQL_TODO_LIST_ID,
+	TODO_ITEMS,
+	TODO_LIST_SELECTED,
+} from "../../constants";
 
 
 export const todoItemsSave = (data) => {
@@ -26,16 +31,15 @@ export const todoItemAdd = (name) => {
 	console.log(TODO_ITEM_ADD, name);
 
 	return async (dispatch, getState) => {
-		const {todo_group_selected} = getState().todo;
-		console.log(todo_group_selected);
-		const data = await graphQLRequest(todoItemAddQuery, {name, todoGroupID: todo_group_selected});
-		console.log(data);
+		const todo_list_selected = getState().todo[TODO_LIST_SELECTED];
+
+		const data = await graphQLRequest(todoItemAddQuery, {name, [GRAPHQL_TODO_LIST_ID]: todo_list_selected});
 
 		dispatch({
 			type: TODO_ITEM_ADD,
-			id: data.todoAdd.id,
+			id: data.todoItemAdd.id,
 			name,
-			todoGroupID: todo_group_selected,
+			[GRAPHQL_TODO_LIST_ID]: todo_list_selected,
 		});
 	}
 }
