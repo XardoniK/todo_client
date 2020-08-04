@@ -3,7 +3,7 @@ import {
 	TODO_GROUP_ADD,
 	TODO_GROUP_SELECT,
 	TODO_ITEM_REMOVE, TODO_ITEM_SET_CHECKED, TODO_GROUPS_SAVE, TODO_LISTS_SAVE,
-	TODO_ITEMS_SAVE, TODO_LIST_ADD
+	TODO_ITEMS_SAVE, TODO_LIST_ADD, TODO_LIST_SELECT
 } from "../action_types";
 import {
 	todoItemAdd,
@@ -11,7 +11,7 @@ import {
 	todoItemSetChecked, todoItemsSave
 } from "../modifiers/todo_item";
 import {
-	todoListAdd,
+	todoListAdd, todoListSelect,
 	todoListsSave,
 } from '../modifiers/todo_list';
 
@@ -54,6 +54,9 @@ const reducer = (state = initial_state, action) => {
 		}
 		case TODO_LIST_ADD: {
 			return todoListAdd(state, action);
+		}
+		case TODO_LIST_SELECT: {
+			return todoListSelect(state, action);
 		}
 
 		case TODO_GROUPS_SAVE: {
