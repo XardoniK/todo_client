@@ -43,7 +43,7 @@ export const todoItemRemoveQuery = `
 
 export const todoItemSetCheckedQuery = `
 	mutation todoItemSetChecked($id: ID!) {
-		todoSetChecked(id: $id) {
+		todoItemSetChecked(id: $id) {
 			id
 		}
 	}
