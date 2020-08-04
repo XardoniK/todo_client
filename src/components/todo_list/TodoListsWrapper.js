@@ -15,8 +15,11 @@ const TodoListsWrapper = (props) => {
 	const {todo_group_id} = useParams();
 
 	useEffect(() => {
-		console.log(todo_group_id);
-		todoGroupSelect(todo_group_id);
+		if (todo_group_id) {
+			todoGroupSelect(todo_group_id);
+		} else {
+			todoGroupSelect(null);
+		}
 	}, [todoGroupSelect, todo_group_id]);
 
 	return (
@@ -30,8 +33,7 @@ const TodoListsWrapper = (props) => {
 TodoListsWrapper.propTypes = propTypes;
 TodoListsWrapper.defaultProps = defaultProps;
 
-const mapStateToProps = state => ({
-});
+const mapStateToProps = state => ({});
 
 const actionCreators = {
 	todoGroupSelect,
