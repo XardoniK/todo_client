@@ -9,9 +9,9 @@ export const todoItemsSave = (state, action) => {
 }
 
 export const todoItemAdd = (state, action) => {
-	const {id, name, todoGroupID} = action;
+	const {id, name, todoListID} = action;
 
-	const updated_todo_items = R.append({id, name, todoGroupID}, state[TODO_ITEMS]);
+	const updated_todo_items = R.append({id, name, todoListID, checked: false}, state[TODO_ITEMS]);
 
 	return {
 		...state,
