@@ -13,10 +13,10 @@ const propTypes = {
 const defaultProps = {};
 
 const TodoItem = (props) => {
-	const {id, checked, name, onRemove, todoSetChecked} = props;
+	const {id, checked, name, todoItemRemove, todoItemSetChecked} = props;
 
-	const onClick = () => {
-		todoSetChecked(id);
+	const onCheckboxClick = () => {
+		todoItemSetChecked(id);
 	};
 
 	return (
@@ -24,8 +24,13 @@ const TodoItem = (props) => {
 
 			<div className="row my-3">
 				<div className="col">
-					<label className="form-check" onClick={onClick}>
-						<input className="form-check-input" type="checkbox" checked={checked}/>
+					<label className="form-check">
+						<input
+							className="form-check-input"
+							type="checkbox"
+							checked={checked}
+							onChange={onCheckboxClick}
+						/>
 						<span className="form-check-label">
 							{name}
 						</span>
@@ -36,9 +41,9 @@ const TodoItem = (props) => {
 					<button
 						type="button"
 						className="btn btn-danger"
-						onClick={onRemove}
+						onClick={todoItemRemove}
 					>
-						usuń
+						Remove item
 					</button>
 
 				</div>
@@ -50,20 +55,11 @@ const TodoItem = (props) => {
 TodoItem.propTypes = propTypes;
 TodoItem.defaultProps = defaultProps;
 
-const mapStateToProps = (state, props) => {
-	// const {hash} = props;
-	// const {todo_list} = state;
-	//
-	// return {
-	// 	todo_item: todo_list[hash]
-	// }
-
-	return {};
-};
+const mapStateToProps = (state) => ({});
 
 const actionCreators = {
-	todoRemove: todoItemRemove,
-	todoSetChecked: todoItemSetChecked,
+	todoItemRemove,
+	todoItemSetChecked,
 };
 
 export default connect(mapStateToProps, actionCreators)(TodoItem);
