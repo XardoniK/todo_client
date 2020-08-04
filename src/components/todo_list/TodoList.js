@@ -22,7 +22,7 @@ const TodoList = (props) => {
 				<div className="col-auto">{id}</div>
 				<div className="col-auto">
 					<Link
-						to={`${ROUTER_TODO_LIST}/${id}`}
+						to={`/${ROUTER_TODO_LIST}/${id}`}
 						className="btn btn-primary"
 
 					>
