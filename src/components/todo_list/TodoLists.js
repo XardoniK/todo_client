@@ -5,7 +5,9 @@ import TodoList from "./TodoList";
 import {filter} from "ramda";
 import {todoListRemove} from "../../redux/actions/todo_list";
 
-const propTypes = {};
+const propTypes = {
+	todo_group_id: PropTypes.string,
+};
 
 const defaultProps = {};
 
@@ -35,10 +37,11 @@ const TodoLists = (props) => {
 TodoLists.propTypes = propTypes;
 TodoLists.defaultProps = defaultProps;
 
-const mapStateToProps = state => {
-	const {todo_lists, todo_group_selected} = state.todo;
+const mapStateToProps = (state, props) => {
+	const {todo_group_id} = props;
+	const {todo_lists} = state.todo;
 
-	const todo_lists_filtered = filter(todo_list => todo_list.todoGroupID === todo_group_selected, todo_lists);
+	const todo_lists_filtered = filter(todo_list => todo_list.todoGroupID === todo_group_id, todo_lists);
 
 	return {
 		todo_lists: todo_lists_filtered,

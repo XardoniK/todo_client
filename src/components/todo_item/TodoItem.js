@@ -13,7 +13,7 @@ const propTypes = {
 const defaultProps = {};
 
 const TodoItem = (props) => {
-	const {id, checked, name, todoItemRemove, todoItemSetChecked} = props;
+	const {id, checked, name, todo_items, todoItemRemove, todoItemSetChecked} = props;
 
 	const onCheckboxClick = () => {
 		todoItemSetChecked(id);
@@ -55,7 +55,9 @@ const TodoItem = (props) => {
 TodoItem.propTypes = propTypes;
 TodoItem.defaultProps = defaultProps;
 
-const mapStateToProps = (state) => ({});
+const mapStateToProps = (state, props) => {
+	return {}
+};
 
 const actionCreators = {
 	todoItemRemove,

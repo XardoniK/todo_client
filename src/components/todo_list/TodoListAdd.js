@@ -4,18 +4,24 @@ import PropTypes from 'prop-types';
 import ItemAdd from "../ItemAdd";
 import {todoListAdd} from "../../redux/actions/todo_list";
 
-const propTypes = {};
+const propTypes = {
+	todo_group_id: PropTypes.string,
+};
 
 const defaultProps = {};
 
 const TodoListAdd = (props) => {
-	const {todoListAdd} = props;
+	const {todo_group_id, todoListAdd} = props;
+
+	const onTodoListAdd = (name) => {
+		todoListAdd(name, todo_group_id);
+	}
 
 	return (
 		<>
 			<ItemAdd
 				placeholder="Add new todo list"
-				onItemAdd={todoListAdd}
+				onItemAdd={onTodoListAdd}
 			/>
 		</>
 	);

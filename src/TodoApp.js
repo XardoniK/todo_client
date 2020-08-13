@@ -1,10 +1,9 @@
 import React, {useEffect} from 'react';
 import {connect} from "react-redux";
-import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
+import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import TodoGroupsWrapper from "./components/todo_group/TodoGroupsWrapper";
 import TodoListsWrapper from "./components/todo_list/TodoListsWrapper";
 import TodoItemsWrapper from "./components/todo_item/TodoItemsWrapper";
-import Button from "reactstrap/lib/Button";
 import {todoDataGet} from "./redux/actions/todo_data";
 import {ROUTER_TODO_GROUP, ROUTER_TODO_LIST} from "./constants";
 
@@ -26,7 +25,9 @@ const TodoApp = (props) => {
 						<TodoListsWrapper/>
 					</Route>
 					<Route>
-						<TodoListsWrapper/>
+						<TodoListsWrapper
+							todo_group_id={null}
+						/>
 						<TodoGroupsWrapper/>
 					</Route>
 				</Switch>

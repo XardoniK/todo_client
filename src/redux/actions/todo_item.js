@@ -1,21 +1,7 @@
 import {graphQLRequest} from "../../grapql/graphql";
-import {
-	TODO_ITEM_ADD,
-	TODO_ITEM_REMOVE,
-	TODO_ITEM_SET_CHECKED,
-	TODO_ITEMS_SAVE,
-} from "../action_types";
-import {
-	todoItemAddQuery,
-	todoItemRemoveQuery,
-	todoItemSetCheckedQuery
-} from "../../grapql/queries";
-import {
-	GRAPHQL_TODO_ITEMS,
-	GRAPHQL_TODO_LIST_ID,
-	TODO_ITEMS,
-	TODO_LIST_SELECTED,
-} from "../../constants";
+import {TODO_ITEM_ADD, TODO_ITEM_REMOVE, TODO_ITEM_SET_CHECKED, TODO_ITEMS_SAVE,} from "../action_types";
+import {todoItemAddQuery, todoItemRemoveQuery, todoItemSetCheckedQuery} from "../../grapql/queries";
+import {GRAPHQL_TODO_ITEMS, GRAPHQL_TODO_LIST_ID, TODO_ITEMS, TODO_LIST_SELECTED,} from "../../constants";
 
 
 export const todoItemsSave = (data) => {
@@ -57,6 +43,7 @@ export const todoItemRemove = (id) => {
 	}
 }
 
+//TODO: rename this for something like toggleChecked
 export const todoItemSetChecked = (id) => {
 
 	return async (dispatch) => {
@@ -69,3 +56,5 @@ export const todoItemSetChecked = (id) => {
 	}
 
 };
+
+//TODO: set all and unset all

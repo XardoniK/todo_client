@@ -6,26 +6,32 @@ import {todoGroupSelect} from "../../redux/actions/todo_group";
 import TodoLists from "./TodoLists";
 import TodoListAdd from "./TodoListAdd";
 
-const propTypes = {};
+const propTypes = {
+	todo_group_id: PropTypes.string,
+};
 
 const defaultProps = {};
 
 const TodoListsWrapper = (props) => {
 	const {todoGroupSelect} = props;
-	const {todo_group_id} = useParams();
+	let {todo_group_id} = useParams();
+
+	if (!todo_group_id) {
+		todo_group_id = null;
+	}
 
 	useEffect(() => {
-		if (todo_group_id) {
-			todoGroupSelect(todo_group_id);
-		} else {
-			todoGroupSelect(null);
-		}
+		todoGroupSelect(todo_group_id);
 	}, [todoGroupSelect, todo_group_id]);
 
 	return (
 		<>
-			<TodoListAdd/>
-			<TodoLists/>
+			<TodoListAdd
+				todo_group_id={todo_group_id}
+			/>
+			<TodoLists
+				todo_group_id={todo_group_id}
+			/>
 		</>
 	);
 };

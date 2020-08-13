@@ -1,6 +1,5 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {connect} from 'react-redux';
-import PropTypes from 'prop-types';
 import {todoGroupAdd} from "../../redux/actions/todo_group";
 import ItemAdd from "../ItemAdd";
 

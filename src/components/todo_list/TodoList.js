@@ -1,8 +1,9 @@
-import React from 'react';
-//import {connect} from 'react-redux';
+import React, {useCallback} from 'react';
+import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {Link} from "react-router-dom";
 import {ROUTER_TODO_LIST} from "../../constants";
+import {filter} from "ramda";
 
 const propTypes = {
 	id: PropTypes.string,
@@ -13,7 +14,15 @@ const propTypes = {
 const defaultProps = {};
 
 const TodoList = (props) => {
-	const {id, name, onRemove} = props;
+	const {id, name, todo_items, onRemove} = props;
+
+	const todoItemsChecked = useCallback(() => {
+		return filter((todo_item) => todo_item.checked, todo_items).length;
+	}, [todo_items]);
+
+	const todoItemsTotal = useCallback(() => {
+		return todo_items.length;
+	}, [todo_items]);
 
 	return (
 		<>
@@ -28,6 +37,9 @@ const TodoList = (props) => {
 					>
 						Select list
 					</Link>
+				</div>
+				<div className="col-auto">
+					{todoItemsChecked()}/{todoItemsTotal()}
 				</div>
 				<div className="col-auto">
 					<div
@@ -45,9 +57,18 @@ const TodoList = (props) => {
 TodoList.propTypes = propTypes;
 TodoList.defaultProps = defaultProps;
 
-//const mapStateToProps = state => {};
+const mapStateToProps = (state, props) => {
+	const {todo_items} = state.todo;
 
-//const actionCreators = {};
+	const todo_items_filtered = filter((todo_item) => todo_item.todoListID === props.id, todo_items);
 
-//export default connect(mapStateToProps, actionCreators)(TodoList);
-export default TodoList;
+	return {
+		todo_items: todo_items_filtered,
+	}
+};
+
+
+const actionCreators = {};
+
+export default connect(mapStateToProps, actionCreators)(TodoList);
+// export default TodoList;
